@@ -4,6 +4,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.mk_latn.No;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,6 +55,13 @@ public class StepDefATM {
         assertThrows(NotEnoughBalanceException.class,
                 () -> atm.withdraw(amount));
     }
+
+    @When("I deposit {float} to ATM")
+    public void i_deposit_to_atm(double amount) throws NotEnoughBalanceException {
+        atm.deposit(amount);
+    }
+
+
     @Then("my account balance is {float}")
     public void my_account_balance_is(double balance) {
         assertEquals(balance, atm.getBalance());
